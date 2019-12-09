@@ -422,7 +422,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingNumDeer: 1
-  leastNumDeer: 5
+  leastNumDeer: 20
   deer: {fileID: 8336363076490389370, guid: 1efc88dd405ecbd459a925d9c015d3af, type: 3}
 --- !u!4 &853921343
 Transform:

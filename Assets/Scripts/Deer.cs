@@ -8,6 +8,7 @@ public class Deer : MonoBehaviour
 {
     [SerializeField] float timeBeforeDestroy = 2;
     [SerializeField] float waypointTolerance = 1f;
+    [SerializeField] float timeAtWaypoint = 5f;
 
     //could make deer with multiple sensitivities
     [SerializeField] float walkingDetectionDistance = 60f;
@@ -17,11 +18,14 @@ public class Deer : MonoBehaviour
     //walking speed 
     float walkingSpeed = 4f;
     //run speed 
-    float runSpeed = 12f;
+    float runSpeed = 20f;
     //time spent fleeing 
     float fleeTime = 6f;
     //time since spooked 
     float timeSinceSpooked = Mathf.Infinity;
+
+    //time since arrived
+    float timeSinceArrived = 0;
 
     int currentWaypointIndex;
     bool dead = false;
@@ -96,6 +100,7 @@ public class Deer : MonoBehaviour
 
     private bool InDetectionRange(float detectionRange)
     {
+        //distance to player 
         float distance = Vector3.Distance(gameObject.transform.position, player.transform.position);
         if (distance < detectionRange)
         {
@@ -133,7 +138,16 @@ public class Deer : MonoBehaviour
         {
             if (AtWaypoint())
             {
-                CycleWaypoint();
+                navMeshAgent.isStopped = true;
+                timeSinceArrived = 0;
+                if (timeSinceArrived >= timeAtWaypoint)
+                {
+                    CycleWaypoint();
+                } else
+                {
+                    timeSinceArrived += Time.deltaTime;
+                }
+
             }
             nextPosition = GetCurrentWaypoint();
         }

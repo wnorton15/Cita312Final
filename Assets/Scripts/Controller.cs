@@ -56,6 +56,7 @@ public class Controller : MonoBehaviour
 
     private void Uncrouch()
     {
+        //uncrouches player 
         crouched = false;
         mover.Uncrouch();
         Deer[] allDeer = FindObjectsOfType<Deer>();
@@ -67,6 +68,7 @@ public class Controller : MonoBehaviour
 
     private void Crouch()
     {
+        //crouches player
         crouched = true;
         mover.Crouch();
         Deer[] allDeer = FindObjectsOfType<Deer>();
@@ -83,6 +85,7 @@ public class Controller : MonoBehaviour
 
     public void Shoot(Transform gun, Transform aimPoint)
     {
+        //shoots gun
         Projectile projectileInstance = Instantiate(bullet, gun.position, Quaternion.identity);
         projectileInstance.SetTarget(aimPoint);
     }

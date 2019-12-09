@@ -34,6 +34,7 @@ namespace Final.Projectile
 
         private Vector3 GetAimLocation()
         {
+            //shoots at dot
             CapsuleCollider targetCapsule = target.GetComponent<CapsuleCollider>();
             if (targetCapsule == null)
             {
@@ -44,6 +45,7 @@ namespace Final.Projectile
 
         private void OnTriggerEnter(Collider other)
         {
+            //collisions
             speed = 0;
             if (other.GetComponent<Deer>() != null)
             {
